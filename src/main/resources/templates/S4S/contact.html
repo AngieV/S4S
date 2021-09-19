@@ -4,15 +4,18 @@
 <body class="container">
 <div id="header" th:replace="fragments :: header"></div>
 
-<h1 th:text="${title}">Default Title</h1>
+    <h1 th:text="${title}">Default Title</h1>
 
-<!-------    DISPLAY VET ASSISTANCE FORM ------->
+<!---------    DISPLAY VET ASSISTANCE FORM ---------->
+    <h2 th:text="${title_vet}">Apply for Assistance</h2>
+    <form>
+
+    </form>
 
 
+<!-----------   DISPLAY VOLUNTEER FORM   ----------->
 
-<!-------   DISPLAY VOLUNTEER FORM   ------->
-
-
+<!-------------------   FOOTER   ------------------->
 <div id="footer" th:replace="fragments :: footer"></div>
 
 </body>

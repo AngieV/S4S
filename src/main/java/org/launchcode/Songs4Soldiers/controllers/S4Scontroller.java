@@ -5,28 +5,28 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value="S4S")
+@RequestMapping("S4S")
 public class S4Scontroller {
 
-    @RequestMapping(value="index")
+    @RequestMapping("index")
     public String index(Model model){
         model.addAttribute("title", "Songs4Soldiers");
         return "S4S/index";
     }
 
-    @RequestMapping(value="about")
+    @RequestMapping("about")
     public String about(Model model){
         model.addAttribute("title", "About Us");
         return "S4S/about";
     }
 
-    @RequestMapping(value="events")
+    @RequestMapping("events")
     public String events(Model model){
         model.addAttribute("title", "Events");
         return "S4S/events";
     }
 
-    @RequestMapping(value="shop")
+    @RequestMapping("shop")
     public String shop(Model model){
         model.addAttribute("title", "Merchandise");
         return "S4S/shop";
