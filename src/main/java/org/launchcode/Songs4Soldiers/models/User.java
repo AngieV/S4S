@@ -5,7 +5,6 @@ import java.util.Objects;
 
 public class User {
 
-    //
     //@Generated()
     //private final int userID;
     private int userID;
