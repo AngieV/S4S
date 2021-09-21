@@ -1,6 +1,8 @@
 package org.launchcode.Songs4Soldiers.models;
 
 import javax.annotation.processing.Generated;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 public class User {
@@ -10,25 +12,22 @@ public class User {
     private int userID;
     private static int nextId = 1;
 
-    //@NotBlank (message = "Name is required")
+    @NotBlank (message = "Name is required")
     private String name;
 
-    //@NotBlank(message = "Name is required")
-    //@Email(message = "Invalid email. Try again.")
+    @NotBlank(message = "Name is required")
+    @Email(message = "Invalid email. Try again.")
     //@Size(min = 7, max = 55, message = "Email must be between 7 and 55 characters long")
     private String email;
 
     //@Size(max = 12, message = "Too many digits! format: 000-555-1234")
     private String phone;
 
-    private String userType;
-
-    public User(int userID, String name, String email, String phone, String userType) {
+    public User(int userID, String name, String email, String phone) {
         //this.userID = userID;
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.userType = userType;
         this.userID = nextId;
         nextId++;
     }
@@ -61,10 +60,6 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getUserType() {
-        return userType;
     }
 
     @Override

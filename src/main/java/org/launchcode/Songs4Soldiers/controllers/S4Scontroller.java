@@ -35,6 +35,8 @@ public class S4Scontroller {
     @RequestMapping(value="contact")
     public String contact(Model model){
         model.addAttribute("title", "Contact Us");
+        model.addAttribute("title_vet", "Request Assistance");
+        model.addAttribute("title_vol", "Volunteer");
         return "S4S/contact";
     }
 }

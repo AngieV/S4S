@@ -6,8 +6,8 @@ public class Volunteer extends User{
 
     private String vol_help;
 
-    public Volunteer(int userID, String name, String email, String phone, String userType, String vol_help) {
-        super(userID, name, email, phone, userType);
+    public Volunteer(int userID, String name, String email, String phone, String vol_help) {
+        super(userID, name, email, phone);
         this.vol_help = vol_help;
     }
 

@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Veteran extends User{
 
-
     private String branch;
 
     private Date vet_serviceStart;
@@ -14,8 +13,8 @@ public class Veteran extends User{
     //@Size(max=500, message = "Description too long!")
     private String vet_help;
 
-    public Veteran(int userID, String name, String email, String phone, String userType, String branch, Date vet_serviceStart, Date vet_serviceEnd, String vet_help) {
-        super(userID, name, email, phone, userType);
+    public Veteran(int userID, String name, String email, String phone, String branch, Date vet_serviceStart, Date vet_serviceEnd, String vet_help) {
+        super(userID, name, email, phone);
         this.branch = branch;
         this.vet_serviceStart = vet_serviceStart;
         this.vet_serviceEnd = vet_serviceEnd;
