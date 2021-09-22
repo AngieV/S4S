@@ -1,10 +1,12 @@
 package org.launchcode.Songs4Soldiers.models;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Volunteer extends User{
 
+    @Size(max=500, message = "Description too long!")
     private String vol_help;
 
     public Volunteer(int userID, String name, String email, String phone, String vol_help) {

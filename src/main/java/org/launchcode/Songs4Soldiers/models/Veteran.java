@@ -1,6 +1,7 @@
 package org.launchcode.Songs4Soldiers.models;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -12,7 +13,7 @@ public class Veteran extends User{
 
     private Date vet_serviceEnd;
 
-    //@Size(max=500, message = "Description too long!")
+    @Size(max=500, message = "Description too long!")
     private String vet_help;
 
     public Veteran(int userID, String name, String email, String phone, String branch, Date vet_serviceStart, Date vet_serviceEnd, String vet_help) {

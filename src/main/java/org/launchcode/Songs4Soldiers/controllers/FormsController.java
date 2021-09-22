@@ -21,7 +21,7 @@ import java.util.List;
 public class FormsController {
 
     //@Autowired
-    private static UserRepository userRepository;
+    private UserRepository userRepository;
 
     @GetMapping("/contact")
     public String displayForms(Model model) {
@@ -35,20 +35,25 @@ public class FormsController {
     }
 
     @PostMapping("/contact")
-    public String processVetAssistRequest(@Valid @ModelAttribute("veteran") Veteran veteran,
+    public String processVetAssistRequest(@Valid @ModelAttribute Veteran veteran,
                                           Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Contact Us");
             return "S4S/contact";
         }
-        UserData.add(veteran);
-        return "redirect:registered";
+        UserRepository.save(veteran);
+        return "redirect:contact";
+        //return "redirect:registered";
     }
 
     @PostMapping("/createVolunteer")
-    public String createVolunteer(@ModelAttribute("volunteer") Volunteer volunteer,
-                                  Errors errors, Model model)) {
-        User.add(volunteer);
+    public String createVolunteer(@Valid @ModelAttribute Volunteer volunteer,
+                                  Errors errors, Model model) {
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Contact Us");
+            return "S4S/contact";
+        }
+        UserRepository.save(volunteer);
         return "redirect:contact";
         //return "redirect:registered";
     }
