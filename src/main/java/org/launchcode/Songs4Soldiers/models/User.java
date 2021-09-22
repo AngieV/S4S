@@ -1,16 +1,18 @@
 package org.launchcode.Songs4Soldiers.models;
 
-import javax.annotation.processing.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
+@Entity
 public class User {
 
-    //@Generated()
-    //private final int userID;
+    @Id
+    @GeneratedValue
     private int userID;
-    private static int nextId = 1;
 
     @NotBlank (message = "Name is required")
     private String name;
@@ -24,12 +26,10 @@ public class User {
     private String phone;
 
     public User(int userID, String name, String email, String phone) {
-        //this.userID = userID;
+        this.userID = userID;
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.userID = nextId;
-        nextId++;
     }
 
     public User(){}

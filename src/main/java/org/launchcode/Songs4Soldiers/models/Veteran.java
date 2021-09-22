@@ -1,7 +1,9 @@
 package org.launchcode.Songs4Soldiers.models;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 public class Veteran extends User{
 
     private String branch;

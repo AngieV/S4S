@@ -1,7 +1,8 @@
 package org.launchcode.Songs4Soldiers.models;
 
-import java.util.Date;
+import javax.persistence.Entity;
 
+@Entity
 public class Volunteer extends User{
 
     private String vol_help;

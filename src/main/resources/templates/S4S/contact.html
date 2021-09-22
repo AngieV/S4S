@@ -6,9 +6,73 @@
 
     <h1 th:text="${title}">Default Title</h1>
 
+<!----------------------    DISPLAY VET ASSISTANCE FORM ---------------------->
+
+<h2 th:text="${title_vet}">Apply for Assistance:</h2>
+<form action="contact" th:action="@{/S4S/contact}" th:object="${veteran}" method="post">
+    <p>* fields required</p>
+    <div class="form-group">
+        <label>*Name: <input type="text" th:field="${veteran.name}" class="form-control" ></label>
+        <p class="error" th:errors="${veteran.name}"></p>
+    </div>
+    <div class="form-group">
+        <label>*e-mail:<input type="text" th:field="${veteran.email}" class="form-control" ></label>
+        <p class="error" th:errors="${veteran.email}"></p>
+    </div>
+    <div>
+        <label>Phone/Cell:<input th:field="*{phone}" class="form-control"></label>
+        <p class="error" th:errors="*{phone}"></p>
+    </div>
+    <div>
+        <label>Branch of Service:</label>
+        <select th:field="*{branch}">
+            <th:block >
+                <option th:each="branch : ${branchList}" th:value="${branch}" th:text="${branch}" />
+            </th:block>
+        </select>
+    </div>
+    <!--        <label>Start:</label><input type="date" th:field="${veteran.vet_serviceStart}" class="form-control">-->
+    <!--        <label>End:</label><input type="date" th:field="${veteran.vet_serviceEnd}" class="form-control">-->
+    <label>How can we can help you?</label><textarea rows="10" cols="75" th:field="${veteran.vet_help}" class="form-control"></textarea>
+    <p class="error" th:errors="${veteran.vet_help}"></p>
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-success">
+        <input type="reset" class="btn btn-info">
+    </div>
+</form>
+
+<!---------------------------  DISPLAY VOLUNTEER FORM   --------------------------->
+<h2 th:text="${title_vol}">Volunteer!</h2>
+
+<form action="/createVolunteer" th:action="@{/contact/createVolunteer}" th:object="${volunteer}" method="post">
+    <p>* fields required</p>
+    <div class="form-group">
+        <label>*Name: <input type="text" th:field="${volunteer.name}" class="form-control"></label>
+    </div>
+    <div class="form-group">
+        <label>*e-mail:<input type="text" th:field="${volunteer.email}" class="form-control"></label>
+    </div>
+    <div>
+        <label>Phone/Cell:<input th:field="${volunteer.phone}" class="form-control"></label>
+    </div>
+    <div class="form-group">
+        <label>"Tell us how you can help!"</label>
+        <textarea rows="10" cols="75" th:field="${volunteer.vol_help}" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-success">
+        <input type="reset" class="btn btn-info">
+    </div>
+</form>
+
+<div id="footer" th:replace="fragments :: footer"></div>
+</body>
+</html>
+
+
 <!-----------------    DISPLAY VET ASSISTANCE FORM ----------------->
 
-    <h2 th:text="${title_vet}">Apply for Assistance</h2>
+<!--    <h2 th:text="${title_vet}">Apply for Assistance</h2>
 
     <form th:action="@{/S4S/contact}" th:object="${veteran}" method="post">
         <p>* fields required</p>
@@ -29,7 +93,7 @@
         </div>
     </form>
 
-<!--<form th:action="@{/S4S/contact}" th:object="${veteran}" method="post" >
+    <form th:action="@{/S4S/contact}" th:object="${veteran}" method="post" >
     <p>* fields required</p>
 
     <div class="form-group">
@@ -50,16 +114,3 @@
         <input type="reset" class="btn btn-info">
     </div>
 </form>-->
-
-<!-------   DISPLAY VOLUNTEER FORM   ------->
-
-<h2 th:text="${title_vol}">Volunteer</h2>
-
-
-
-
-<!-------------------   FOOTER   ------------------->
-<div id="footer" th:replace="fragments :: footer"></div>
-
-</body>
-</html>
