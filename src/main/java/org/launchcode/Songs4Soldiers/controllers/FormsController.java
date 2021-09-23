@@ -1,6 +1,5 @@
 package org.launchcode.Songs4Soldiers.controllers;
 
-import org.launchcode.Songs4Soldiers.data.UserData;
 import org.launchcode.Songs4Soldiers.data.UserRepository;
 import org.launchcode.Songs4Soldiers.models.User;
 import org.launchcode.Songs4Soldiers.models.Veteran;
@@ -12,7 +11,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,11 +18,11 @@ import java.util.List;
 @RequestMapping("/S4S")
 public class FormsController {
 
-    //@Autowired
+    @Autowired
     private UserRepository userRepository;
 
     @GetMapping("/contact")
-    public String displayForms(Model model) {
+    public String displayVetAssistForm(Model model) {
         model.addAttribute("title_vet", "Apply for Assistance");
         model.addAttribute(new Veteran());
         List<String> branchList = Arrays.asList("--Please select--", "US Army", "US Navy", "US Air Force", "US Marines", "US Coast Guard");
@@ -41,19 +39,27 @@ public class FormsController {
             model.addAttribute("title", "Contact Us");
             return "S4S/contact";
         }
-        UserRepository.save(veteran);
+        userRepository.save(veteran);
         return "redirect:contact";
         //return "redirect:registered";
     }
 
-    @PostMapping("/createVolunteer")
+    @GetMapping("/volunteer")
+    public String displayVolunteerForm(Model model) {
+        model.addAttribute("title_vol", "Be a Volunteer");
+        model.addAttribute(new Volunteer());
+        return "S4S/volunteer";
+    }
+
+//create form names or some other way to process form separately
+    @PostMapping("/volunteer")
     public String createVolunteer(@Valid @ModelAttribute Volunteer volunteer,
                                   Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Contact Us");
             return "S4S/contact";
         }
-        UserRepository.save(volunteer);
+        userRepository.save(volunteer);
         return "redirect:contact";
         //return "redirect:registered";
     }
@@ -98,7 +104,7 @@ public class FormsController {
          <th>ID</th>
          <th>Name</th>
          <th>Description</th>
-         <th>Contact Email</th>
+         <th>Email</th>
       </tr>
    </thead>
    <tr th:each="veteran : ${veteran}">

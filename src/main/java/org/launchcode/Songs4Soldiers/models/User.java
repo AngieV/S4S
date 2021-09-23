@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -17,12 +18,12 @@ public class User {
     @NotBlank (message = "Name is required")
     private String name;
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Email is required")
     @Email(message = "Invalid email. Try again.")
     //@Size(min = 7, max = 55, message = "Email must be between 7 and 55 characters long")
     private String email;
 
-    //@Size(max = 12, message = "Too many digits! format: 000-555-1234")
+   @Size(min = 10, max = 12, message = "Too many digits! format: 000-555-1234")
     private String phone;
 
     public User(int userID, String name, String email, String phone) {

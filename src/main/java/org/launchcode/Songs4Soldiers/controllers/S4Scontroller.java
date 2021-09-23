@@ -29,6 +29,7 @@ public class S4Scontroller {
     @RequestMapping("shop")
     public String shop(Model model){
         model.addAttribute("title", "Merchandise");
+
         return "S4S/shop";
     }
 
