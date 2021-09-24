@@ -75,13 +75,13 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof User)) return false;
         User user = (User) o;
-        return userID == user.userID && getName().equals(user.getName()) && getEmail().equals(user.getEmail());
+        return getUserID() == user.getUserID() && getEmail().equals(user.getEmail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userID, getName(), getEmail());
+        return Objects.hash(getUserID(), getEmail());
     }
 }

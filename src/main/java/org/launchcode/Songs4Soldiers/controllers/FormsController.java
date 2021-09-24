@@ -27,13 +27,11 @@ public class FormsController {
         model.addAttribute(new Veteran());
         List<String> branchList = Arrays.asList("--Please select--", "US Army", "US Navy", "US Air Force", "US Marines", "US Coast Guard");
         model.addAttribute("branchList", branchList);
-        model.addAttribute("title_vol", "Be a Volunteer");
-        model.addAttribute(new Volunteer());
         return "S4S/contact";
     }
 
     @PostMapping("/contact")
-    public String processVetAssistRequest(@Valid @ModelAttribute Veteran veteran,
+    public String processVetAssistRequest(@ModelAttribute @Valid Veteran veteran,
                                           Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Contact Us");
@@ -51,71 +49,39 @@ public class FormsController {
         return "S4S/volunteer";
     }
 
-//create form names or some other way to process form separately
+    //create form names or some other way to process form separately
     @PostMapping("/volunteer")
-    public String createVolunteer(@Valid @ModelAttribute Volunteer volunteer,
+    public String createVolunteer(@ModelAttribute @Valid Volunteer volunteer,
                                   Errors errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Contact Us");
-            return "S4S/contact";
+            model.addAttribute("title", "Volunteer");
+            return "S4S/volunteer";
         }
         userRepository.save(volunteer);
-        return "redirect:contact";
+        return "S4S/volunteer";
         //return "redirect:registered";
     }
 }
 
- /*   private static List<Veteran> veteran = new ArrayList<>();
-    private static List<Volunteer> volunteer = new ArrayList<>();
-
-    @GetMapping
-    public String displayForms(Model model){
-        //Veteran veteran = new Veteran();
-        model.addAttribute("veteran", veteran);
-        return "S4S/contact";
-    }
-
-    @PostMapping
-    public String processVetAssistForm(@ModelAttribute @Valid Veteran newVeteran,
-                                       Errors errors, Model model){
-        if(errors.hasErrors()) {
-            model.addAttribute("title", "Request Assistance");
-            model.addAttribute("errorMsg", "Bad data!");
-            return "events/create";
-        }
-        UserData.add(newVeteran);
-        return "redirect";
-    }
-
-    @GetMapping
-    public String createVolunteer(Model model){
-        return "S4S/contact/createVolunteer";
-    }
-
-    @PostMapping
-    public String createVolunteer(@ModelAttribute Volunteer volunteer){
-        UserData.add(volunteer);
-        return "redirect";
-    }
+ /*
 
     <table class="table table-striped">
    <thead>
       <tr>
          <th>ID</th>
          <th>Name</th>
-         <th>Description</th>
          <th>Email</th>
+         <th>Phone</th>
+         <th>Message</th>
       </tr>
    </thead>
    <tr th:each="veteran : ${veteran}">
       <td th:text="${veteran.id}"></td>
       <td th:text="${veteran.name}"></td>
       <td th:text="${veteran.email}"></td>
-      <td th:text="${veteran.help}"></td>
+      <td th:text="${veteran.phone}"></td>
+      <td th:text="${veteran.vet_help}"></td>
    </tr>
 </table>
 
 */
-
-
-    // public String @ResponseBody

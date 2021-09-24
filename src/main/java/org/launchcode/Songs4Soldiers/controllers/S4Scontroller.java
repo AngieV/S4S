@@ -23,6 +23,7 @@ public class S4Scontroller {
     @RequestMapping("events")
     public String events(Model model){
         model.addAttribute("title", "Events");
+        model.addAttribute("tickets", "Tickets");
         return "S4S/events";
     }
 
@@ -33,11 +34,16 @@ public class S4Scontroller {
         return "S4S/shop";
     }
 
-    @RequestMapping(value="contact")
+    @RequestMapping("contact")
     public String contact(Model model){
         model.addAttribute("title", "Contact Us");
         //model.addAttribute("title_vet", "Request Assistance");
         //model.addAttribute("title_vol", "Volunteer");
         return "S4S/contact";
+    }
+
+    @RequestMapping("volunteer")
+    public String volunteer(Model model){
+        return "S4S/volunteer";
     }
 }

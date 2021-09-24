@@ -67,4 +67,6 @@ public class Veteran extends User{
                 ", vet_help='" + vet_help + '\'' +
                 '}';
     }
+
+
 }
