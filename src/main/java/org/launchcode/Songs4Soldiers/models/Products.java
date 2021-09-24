@@ -20,7 +20,9 @@ public class Products {
 
     private String color;
 
-    public Products(int id, String category, String name, String description, Double price, String size, String color) {
+    private String image;
+
+    public Products(int id, String category, String name, String description, Double price, String size, String color, String image) {
         this.id = id;
         this.category = category;
         this.name = name;
@@ -28,6 +30,7 @@ public class Products {
         this.price = price;
         this.size = size;
         this.color = color;
+        this.image = image;
     }
 
     //public Products(){}
@@ -58,6 +61,10 @@ public class Products {
 
     public String getColor() {
         return color;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     @Override
