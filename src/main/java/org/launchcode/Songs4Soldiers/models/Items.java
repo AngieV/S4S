@@ -4,7 +4,7 @@ public class Items {
 
     public class Item {
 
-        private Products id;
+        private Product id;
 
         private int quantity;
 
@@ -14,7 +14,7 @@ public class Items {
 
         private double price;
 
-        public Item(Products id, int quantity, String color, String size, double price) {
+        public Item(Product id, int quantity, String color, String size, double price) {
             this.id = id;
             this.quantity = quantity;
             this.color = color;
@@ -25,7 +25,7 @@ public class Items {
         public Item() {
         }
 
-        public Products getId() {
+        public Product getId() {
             return id;
         }
 

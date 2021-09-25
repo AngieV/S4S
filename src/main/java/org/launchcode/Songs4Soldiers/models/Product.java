@@ -1,11 +1,13 @@
 package org.launchcode.Songs4Soldiers.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
+public class Product {
 
-public class Products {
-
-    //need any annotations when pulling infor from database?
+    @Id
     private int id;
 
     private String category;
@@ -16,24 +18,18 @@ public class Products {
 
     private Double price;
 
-    private String size;
-
-    private String color;
-
     private String image;
 
-    public Products(int id, String category, String name, String description, Double price, String size, String color, String image) {
+    public Product(int id, String category, String name, String description, Double price, String image) {
         this.id = id;
         this.category = category;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.size = size;
-        this.color = color;
         this.image = image;
     }
 
-    //public Products(){}
+    public Product(){}
 
     public int getId() {
         return id;
@@ -55,28 +51,18 @@ public class Products {
         return price;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
     public String getImage() {
         return image;
     }
 
     @Override
     public String toString() {
-        return "Products{" +
+        return "Product{" +
                 "id=" + id +
                 ", category='" + category + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", size='" + size + '\'' +
-                ", color='" + color + '\'' +
                 '}';
     }
 
@@ -84,7 +70,7 @@ public class Products {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Products products = (Products) o;
+        Product products = (Product) o;
         return getId() == products.getId() && getName().equals(products.getName());
     }
 
