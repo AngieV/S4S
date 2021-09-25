@@ -1,9 +1,11 @@
 package org.launchcode.Songs4Soldiers.controllers;
 
+import org.launchcode.Songs4Soldiers.data.UserRegistrationRepository;
 import org.launchcode.Songs4Soldiers.data.UserRepository;
 import org.launchcode.Songs4Soldiers.models.DTO.LoginFormDTO;
 import org.launchcode.Songs4Soldiers.models.DTO.RegisterFormDTO;
 import org.launchcode.Songs4Soldiers.models.User;
+import org.launchcode.Songs4Soldiers.models.User_Registered;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -22,27 +24,27 @@ import java.util.Optional;
 public class AuthenticationController {
 
     @Autowired
-    UserRepository userRepository;
+    UserRegistrationRepository  userRegistrationRepository;
 
-    private static final String userSessionKey = "user";
+    private static final String userSessionKey = "userReg";
 
-    public User getUserFromSession(HttpSession session) {
+    public User_Registered getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         if (userId == null) {
             return null;
         }
 
-        Optional<User> user = userRepository.findById(userId);
+        Optional<User_Registered> userReg = userRegistrationRepository.findById(userId);
 
-        if (user.isEmpty()) {
+        if (userReg.isEmpty()) {
             return null;
         }
 
-        return user.get();
+        return userReg.get();
     }
 
-    private static void setUserInSession(HttpSession session, User user) {
-        session.setAttribute(userSessionKey, user.getUserID());
+    private static void setUserInSession(HttpSession session, User_Registered userReg) {
+        session.setAttribute(userSessionKey, userReg.getId());
     }
 
     @GetMapping("/register")
@@ -62,7 +64,7 @@ public class AuthenticationController {
             return "register";
         }
 
-        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
+        User_Registered existingUser = userRegistrationRepository.findByUsername(registerFormDTO.getUsername());
 
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
@@ -78,8 +80,8 @@ public class AuthenticationController {
             return "register";
         }
 
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
-        userRepository.save(newUser);
+        User_Registered newUser = new User_Registered(registerFormDTO.getUsername(), registerFormDTO.getPassword());
+        userRegistrationRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
         return "redirect:";
@@ -102,7 +104,7 @@ public class AuthenticationController {
             return "login";
         }
 
-        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+        User_Registered theUser = userRegistrationRepository.findByUsername(loginFormDTO.getUsername());
 
         if (theUser == null) {
             errors.rejectValue("username", "user.invalid", "The given username does not exist");
