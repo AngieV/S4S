@@ -5,16 +5,23 @@ var products = {
             "size": ["S", "M", "L", "XL", "2X"],
             "color": "Heather grey",
             "price": "30.00",
-            "description": "",
-            "image": ""
+            "description": ["Celebrate, Honor and Remember with this Songs4Soldiers Crewneck Sweatshirt",
+                            "Soft, Lightweight French Terry Material",
+                            "66/34 polyester/ringspun cotton",
+                            "Black Heather Fabric Color",
+                            "Preshrunk Adult Sizes"],
+            "image": "@{/images/catalog/CrewSweatshirt_740x.jpeg}",
+            "images_expanded": "sweatshirtModels_740x.jpeg"
         },
         {
             "name": "Tailgate Fest Baseball Tee",
             "size": ["S", "M", "L", "XL", "2X"],
             "color": "White/Maroon",
             "price": "25.00",
-            "description": "",
-            "image": ""
+            "description": ["The baseball-style T-shirt is from the 2020 Drive-in Concert, benefitting Songs4Soldiers",
+                            "52% cotton / 48% polyester",
+                            "Unisex, regular fit t-shirt"],
+            "image": ["TailgateFestTee-front_740x.jpeg", "TailgateFestTee-back_740x"]
         },
         {
             "name": "2020 Event (Cancelled) Tee",

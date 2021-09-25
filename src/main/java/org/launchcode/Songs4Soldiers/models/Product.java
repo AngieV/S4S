@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Product {
 
     @Id
-    private int id;
+    private Integer ID;
 
     private String category;
 
@@ -18,21 +18,21 @@ public class Product {
 
     private Double price;
 
-    private String image;
+    private String imageName;
 
-    public Product(int id, String category, String name, String description, Double price, String image) {
-        this.id = id;
+    public Product(Integer ID, String category, String name, String description, Double price, String imageName) {
+        this.ID = ID;
         this.category = category;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.image = image;
+        this.imageName = imageName;
     }
 
-    public Product(){}
+
 
     public int getId() {
-        return id;
+        return ID;
     }
 
     public String getCategory() {
@@ -52,13 +52,13 @@ public class Product {
     }
 
     public String getImage() {
-        return image;
+        return imageName;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
+                "id=" + ID +
                 ", category='" + category + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
