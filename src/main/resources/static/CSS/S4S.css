@@ -114,6 +114,34 @@
    * SHOP
    *
    */
+   img {
+        padding: 10px;
+      }
+
+   .product-entry {
+     padding: 0 5%;
+   }
+
+   .productpic {
+     float: left;
+     padding: 10px;
+     width: 200px;
+     display: none;
+   }
+
+   .product-text {
+     font-style: bold;
+     font-size: 14px;
+     line-height: 16px;
+     float: left;
+   }
+
+   .price-text {
+     font-style: italic;
+     font-size: 14px;
+     line-height: 16px;
+     float: right;
+   }
 
 
   /*
