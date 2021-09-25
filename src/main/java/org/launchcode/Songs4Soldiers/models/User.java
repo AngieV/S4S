@@ -1,19 +1,26 @@
 package org.launchcode.Songs4Soldiers.models;
 
+import org.dom4j.tree.AbstractEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-public class User {
+public class User extends AbstractEntity {
 
     @Id
     @GeneratedValue
     private int userID;
+
+    @NotNull
+    private String pwHash;
 
     @NotBlank (message = "Name is required")
     private String name;
@@ -31,6 +38,20 @@ public class User {
         this.name = name;
         this.email = email;
         this.phone = phone;
+    }
+
+    //encode & store password hash
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    //overload the constructor
+    public User(String username, String password) {
+    }
+
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
+    }
+
+    public String getUsername() {
+        return name;
     }
 
     public User(){}
