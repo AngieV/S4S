@@ -115,6 +115,20 @@
    *
    */
 
+   .product-text {
+     font-style: Bold;
+     font-size: 14px;
+     line-height: 16px;
+     float: left;
+   }
+
+   .price-text {
+     font-style: italic;
+     font-size: 14px;
+     line-height: 16px;
+     float: right;
+   }
+
 
   /*
    *
