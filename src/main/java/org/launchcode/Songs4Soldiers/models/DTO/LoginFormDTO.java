@@ -4,6 +4,7 @@ package org.launchcode.Songs4Soldiers.models.DTO;
  * Code provided by LaunchCode
  */
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,7 +13,8 @@ public class LoginFormDTO {
 
     @NotNull
     @NotBlank
-    @Size(min = 3, max = 20, message = "Invalid username. Must be between 3 and 20 characters.")
+    @Email
+    @Size(min = 7, max = 20, message = "Invalid login email. Must be between 7 and 20 characters.")
     private String username;
 
     @NotNull

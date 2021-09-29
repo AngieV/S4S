@@ -17,7 +17,7 @@ public class User extends AbstractEntity {
 
     @Id
     @GeneratedValue
-    private int userID;
+    private int userId;
 
     @NotNull
     private String pwHash;
@@ -30,34 +30,49 @@ public class User extends AbstractEntity {
     //@Size(min = 7, max = 55, message = "Email must be between 7 and 55 characters long")
     private String email;
 
-   @Size(min = 10, max = 12, message = "Too many digits! format: 000-555-1234")
-    private String phone;
+    @NotBlank(message = "Username is required")
+    @Email(message = "Invalid username. Try again.")
+    @Size(min = 7, max = 55, message = "Email must be between 7 and 55 characters long")
+    private String username;
 
-    public User(int userID, String name, String email, String phone) {
-        this.userID = userID;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-    }
+    @Size(min = 10, max = 12, message = "Too many digits! format: 000-555-1234")
+    private String phone;
 
     //encode & store password hash
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    //overload the constructor
-    public User(String username, String password) {
+
+    public User(int userId, String name, String email, String username, String phone, String password) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.phone = phone;
+        this.pwHash = encoder.encode(password);
+    }
+
+    public User(){}
+
+   public User(int userID, String username, String password) {
+        this.userId = userId;
+        this.email = username;
+        this.pwHash = encoder.encode(password);
+    }
+
+    //Getters and setters
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String name) {
+        this.username = username;
     }
 
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
     }
 
-    public String getUsername() {
-        return name;
-    }
-
-    public User(){}
-
     public int getUserID() {
-        return userID;
+        return userId;
     }
 
     public String getName() {
