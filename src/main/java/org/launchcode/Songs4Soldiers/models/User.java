@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-public class User extends AbstractEntity {
+public class User extends AbstractEntity{
 
     @Id
     @GeneratedValue
@@ -22,16 +22,16 @@ public class User extends AbstractEntity {
     @NotNull
     private String pwHash;
 
-    @NotBlank (message = "Name is required")
+    //@NotBlank (message = "Name is required")
     private String name;
 
-    @NotBlank(message = "Email is required")
+    //@NotBlank(message = "Email is required")
     @Email(message = "Invalid email. Try again.")
     //@Size(min = 7, max = 55, message = "Email must be between 7 and 55 characters long")
     private String email;
 
     @NotBlank(message = "Username is required")
-    @Email(message = "Invalid username. Try again.")
+    @Email(message = "Invalid username. Please enter a valid email.")
     @Size(min = 7, max = 55, message = "Email must be between 7 and 55 characters long")
     private String username;
 
@@ -52,9 +52,9 @@ public class User extends AbstractEntity {
 
     public User(){}
 
-   public User(int userID, String username, String password) {
-        this.userId = userId;
-        this.email = username;
+
+  public User(String username, String password) {
+        this.username = username;
         this.pwHash = encoder.encode(password);
     }
 
@@ -63,7 +63,7 @@ public class User extends AbstractEntity {
         return username;
     }
 
-    public void setUsername(String name) {
+    public void setUsername(String username) {
         this.username = username;
     }
 

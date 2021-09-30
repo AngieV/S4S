@@ -9,7 +9,8 @@ public class Volunteer extends User{
     @Size(max=500, message = "Description too long!")
     private String vol_help;
 
-    public Volunteer(int userId, String name, String email, String username, String phone, String password, String vol_help) {
+    public Volunteer(int userId, String name, String email, String username, String phone, String vol_help, String password) {
+        //super(userId, name, email, phone);
         super(userId, name, email, username, phone, password);
         this.vol_help = vol_help;
     }

@@ -17,7 +17,9 @@ public class Veteran extends User{
     private String vet_help;
 
     public Veteran(int userId, String name, String email, String username, String phone, String password, String branch, Date vet_serviceStart, Date vet_serviceEnd, String vet_help) {
+    //public Veteran(int userId, String name, String email, String phone, String branch, Date vet_serviceStart, Date vet_serviceEnd, String vet_help) {
         super(userId, name, email, username, phone, password);
+        //super(userId, name, email, phone);
         this.branch = branch;
         this.vet_serviceStart = vet_serviceStart;
         this.vet_serviceEnd = vet_serviceEnd;
@@ -67,6 +69,4 @@ public class Veteran extends User{
                 ", vet_help='" + vet_help + '\'' +
                 '}';
     }
-
-
 }
