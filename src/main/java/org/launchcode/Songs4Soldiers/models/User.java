@@ -19,34 +19,32 @@ public class User extends AbstractEntity{
     @GeneratedValue
     private int userId;
 
+    @NotBlank(message = "Username is required")
+    @NotNull
+    //@Email(message = "Invalid username. Please enter a valid email.")
+    @Size(min = 7, max = 55, message = "Email must be between 7 and 55 characters long")
+    private String username;
+
     @NotNull
     private String pwHash;
 
-    //@NotBlank (message = "Name is required")
-    private String name;
-
     //@NotBlank(message = "Email is required")
     @Email(message = "Invalid email. Try again.")
-    //@Size(min = 7, max = 55, message = "Email must be between 7 and 55 characters long")
-    private String email;
-
-    @NotBlank(message = "Username is required")
-    @Email(message = "Invalid username. Please enter a valid email.")
     @Size(min = 7, max = 55, message = "Email must be between 7 and 55 characters long")
-    private String username;
+    private String email;
 
     @Size(min = 10, max = 12, message = "Too many digits! format: 000-555-1234")
     private String phone;
 
-    //encode & store password hash
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public User(int userId, String name, String email, String username, String phone, String password) {
+    //public User(int userId, String name, String email, String phone) {
+    public User(int userId, String username, String email, String phone, String password) {
+        //super(username, password);
         this.userId = userId;
-        this.name = name;
         this.email = email;
-        this.username = username;
         this.phone = phone;
+        this.username = username;
         this.pwHash = encoder.encode(password);
     }
 
@@ -75,14 +73,6 @@ public class User extends AbstractEntity{
         return userId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -102,7 +92,7 @@ public class User extends AbstractEntity{
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "name='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';

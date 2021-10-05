@@ -3,20 +3,27 @@ package org.launchcode.Songs4Soldiers.models;
 import org.dom4j.tree.AbstractEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class RegisteredUser extends User {
+public class RegisteredUser extends AbstractEntity {
+
+   /* @Id
+    @GeneratedValue
+    private int userId;*/
+
+    @NotBlank(message = "Username is required")
+    @NotNull
+    //@Email(message = "Invalid username. Please enter a valid email.")
+    @Size(min = 7, max = 55, message = "Email must be between 7 and 55 characters long")
+    private String username;
 
     @NotNull
     private String pwHash;
-
-    @NotBlank(message = "Username is required")
-    @Email(message = "Invalid username. Please enter a valid email.")
-    @Size(min = 7, max = 55, message = "Email must be between 7 and 55 characters long")
-    private String username;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -24,6 +31,8 @@ public class RegisteredUser extends User {
         this.username = username;
         this.pwHash = encoder.encode(password);
     }
+
+    public RegisteredUser(){}
 
     public String getUsername() {
         return username;

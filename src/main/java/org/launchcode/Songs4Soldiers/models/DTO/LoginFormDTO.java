@@ -12,13 +12,17 @@ import javax.validation.constraints.Size;
 public class LoginFormDTO {
 
     @NotNull
-    @NotBlank
-    @Email
-    @Size(min = 7, max = 20, message = "Invalid login email. Must be between 7 and 20 characters.")
+    @NotBlank(message = "Username is required")
+    @Size(min = 5, max = 20, message = "Invalid username. Must be between 7 and 20 characters.")
     private String username;
 
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email. Try again.")
+    @Size(min = 7, max = 20, message = "Invalid login email. Must be between 7 and 20 characters.")
+    private String email;
+
     @NotNull
-    @NotBlank
+    @NotBlank(message = "Please enter a password to create your account")
     @Size(min = 5, max = 30, message = "Invalid password. Must be between 5 and 30 characters.")
     private String password;
 
@@ -28,6 +32,14 @@ public class LoginFormDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

@@ -8,17 +8,17 @@ import java.util.Objects;
 public class Product {
 
     @Id
-    private Integer ID;
+    private final Integer ID;
 
-    private String category;
+    private final String category;
 
-    private String name;
+    private final String name;
 
-    private String description;
+    private final String description;
 
-    private Double price;
+    private final Double price;
 
-    private String imageName;
+    private final String imageName;
 
     public Product(Integer ID, String category, String name, String description, Double price, String imageName) {
         this.ID = ID;
