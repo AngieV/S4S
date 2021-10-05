@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class UserData {
 
-    private static Map<Integer, User> users = new HashMap<>();
+    private static final Map<Integer, User> users = new HashMap<>();
 
     public static Collection<User> getAll() {
         return users.values();
@@ -26,8 +26,8 @@ public class UserData {
 
 
     // store sub-user data
-    private static Map<Integer, Volunteer> volunteers = new HashMap<>();
-    private static Map<Integer, Veteran> veterans = new HashMap<>();
+    private static final Map<Integer, Volunteer> volunteers = new HashMap<>();
+    private static final Map<Integer, Veteran> veterans = new HashMap<>();
 
     //get sub-user id
 
