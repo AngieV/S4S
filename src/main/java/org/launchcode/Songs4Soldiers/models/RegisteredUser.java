@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/* public class RegisteredUser extends User { */
 public class RegisteredUser extends AbstractEntity {
 
    /* @Id
@@ -19,7 +20,7 @@ public class RegisteredUser extends AbstractEntity {
     @NotBlank(message = "Username is required")
     @NotNull
     //@Email(message = "Invalid username. Please enter a valid email.")
-    @Size(min = 7, max = 55, message = "Email must be between 7 and 55 characters long")
+    @Size(min = 7, max = 55, message = "Username must be between 7 and 55 characters long")
     private String username;
 
     @NotNull
