@@ -13,7 +13,7 @@
 <form action="contact" th:action="@{/S4S/contact}" th:object="${veteran}" method="post">
     <p>* fields required</p>
     <div class="form-group">
-        <label>*Name: <input type="text" th:field="${veteran.name}" class="form-control" ></label>
+        <label>*Name: <input type="text" th:field="${veteran.username}" class="form-control" ></label>
         <p class="error" th:errors="${veteran.name}"></p>
     </div>
     <div class="form-group">

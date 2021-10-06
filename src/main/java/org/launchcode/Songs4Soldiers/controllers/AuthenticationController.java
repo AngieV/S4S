@@ -1,8 +1,10 @@
 package org.launchcode.Songs4Soldiers.controllers;
 
+import org.launchcode.Songs4Soldiers.data.RegUserRepository;
 import org.launchcode.Songs4Soldiers.data.UserRepository;
 import org.launchcode.Songs4Soldiers.models.DTO.LoginFormDTO;
 import org.launchcode.Songs4Soldiers.models.DTO.RegisterFormDTO;
+import org.launchcode.Songs4Soldiers.models.RegisteredUser;
 import org.launchcode.Songs4Soldiers.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,27 +29,27 @@ import java.util.Optional;
 public class AuthenticationController {
 
     @Autowired
-    UserRepository userRepository;
+    RegUserRepository regUserRepository;
 
     private static final String userSessionKey = "user";
 
-    public User getUserFromSession(HttpSession session) {
+    public RegisteredUser getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         if (userId == null) {
             return null;
         }
 
-        Optional<User> user = userRepository.findById(userId);
+        Optional<RegisteredUser> r_user = regUserRepository.findById(userId);
 
-        if (user.isEmpty()) {
+        if (r_user.isEmpty()) {
             return null;
         }
 
-        return user.get();
+        return r_user.get();
     }
 
-    private static void setUserInSession(HttpSession session, User user) {
-        session.setAttribute(userSessionKey, user.getUserID());
+    private static void setUserInSession(HttpSession session, RegisteredUser r_user) {
+        session.setAttribute(userSessionKey, r_user.getUserID());
     }
 
     @GetMapping("/register")
@@ -67,7 +69,7 @@ public class AuthenticationController {
             return "S4S/register";
         }
 
-        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
+        RegisteredUser existingUser = regUserRepository.findByUsername(registerFormDTO.getUsername());
 
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
@@ -83,8 +85,8 @@ public class AuthenticationController {
             return "S4S/register";
         }
 
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
-        userRepository.save(newUser);
+        RegisteredUser newUser = new RegisteredUser(registerFormDTO.getUsername(), registerFormDTO.getPassword());
+        regUserRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
         return "redirect:";
@@ -107,7 +109,7 @@ public class AuthenticationController {
             return "S4S/login";
         }
 
-        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+        RegisteredUser theUser = regUserRepository.findByUsername(loginFormDTO.getUsername());
 
         if (theUser == null) {
             errors.rejectValue("username", "user.invalid", "The given username does not exist");

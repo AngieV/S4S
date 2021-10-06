@@ -16,9 +16,9 @@ public class Veteran extends User{
     @Size(max=500, message = "Description too long!")
     private String vet_help;
 
-    public Veteran(int userId, String name, String email, String username, String phone, String password, String branch, Date vet_serviceStart, Date vet_serviceEnd, String vet_help) {
-    //public Veteran(int userId, String name, String email, String phone, String branch, Date vet_serviceStart, Date vet_serviceEnd, String vet_help) {
-        super(userId, name, email, username, phone, password);
+    public Veteran(int userId, String email, String phone,  String branch, Date vet_serviceStart, Date vet_serviceEnd, String vet_help) {
+    //public Veteran(int userId, String email, String phone, String branch, Date vet_serviceStart, Date vet_serviceEnd, String vet_help) {
+        super(userId, email, phone);
         //super(userId, name, email, phone);
         this.branch = branch;
         this.vet_serviceStart = vet_serviceStart;
