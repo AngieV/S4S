@@ -9,7 +9,6 @@
 <!----------------------    DISPLAY VET ASSISTANCE FORM ---------------------->
 
 <h2 th:text="${title_vet}">Apply for Assistance:</h2>
-<p> Have an account? Please <a href="/S4S/login">log in</a>. Need an account? <a href="/S4S/register">Register Here</a></p>
 <form action="contact" th:action="@{/S4S/contact}" th:object="${veteran}" method="post">
     <p>* fields required</p>
     <div class="form-group">
