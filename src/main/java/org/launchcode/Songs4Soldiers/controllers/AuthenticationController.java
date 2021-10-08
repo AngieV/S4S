@@ -3,6 +3,7 @@ package org.launchcode.Songs4Soldiers.controllers;
 import org.launchcode.Songs4Soldiers.data.UserRepository;
 import org.launchcode.Songs4Soldiers.models.DTO.LoginFormDTO;
 import org.launchcode.Songs4Soldiers.models.DTO.RegisterFormDTO;
+import org.launchcode.Songs4Soldiers.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/S4S")
@@ -26,7 +29,7 @@ public class AuthenticationController {
     @Autowired
     UserRepository userRepository;
 
-    /*private static final String userSessionKey = "user";
+    private static final String userSessionKey = "user";
 
     public User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
@@ -44,8 +47,8 @@ public class AuthenticationController {
     }
 
     private static void setUserInSession(HttpSession session, User user) {
-        session.setAttribute(userSessionKey, user.getId());
-    }*/
+        session.setAttribute(userSessionKey, user.getUserID());
+    }
 
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
@@ -64,13 +67,13 @@ public class AuthenticationController {
             return "/S4S/register";
         }
 
-        /*User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
+        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
 
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
             model.addAttribute("title", "Register");
             return "register";
-        }*/
+        }
 
         String password = registerFormDTO.getPassword();
         String verifyPassword = registerFormDTO.getVerifyPassword();
@@ -80,9 +83,9 @@ public class AuthenticationController {
             return "/S4S/register";
         }
 
-        /*User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
+        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
         userRepository.save(newUser);
-        setUserInSession(request.getSession(), newUser);*/
+        setUserInSession(request.getSession(), newUser);
 
         return "redirect:";
     }
@@ -104,7 +107,7 @@ public class AuthenticationController {
             return "/S4S/login";
         }
 
-        /*User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
 
         if (theUser == null) {
             errors.rejectValue("username", "user.invalid", "The given username does not exist");
@@ -122,7 +125,7 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-*/        return "redirect:";
+        return "redirect:";
     }
 
     @GetMapping("/logout")
